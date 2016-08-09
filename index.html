@@ -18,12 +18,49 @@
 </head>
 
 <body>
+    <!-- MVC's View section -->
+    <video autoplay></video>
+    <img src="">
+    <canvas style="display:none;"></canvas>
+    
+    <p>
+	<footer role="contentinfo">
+		<div>Page footer content</div>
+		<small>Copyright &copy; <time datetime="2016">2016</time></small>
+	</footer>
+    </p>
+    
+    <style>
+    video {
+      width: 307px;
+      height: 250px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid #ccc;
+    }
+    </style>
 
+    <!-- MVC's Control section -->
     <script>
+        var video = document.querySelector('video');
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        var localMediaStream = null;
+        
+        function snapshot() {
+            if (localMediaStream) {
+                ctx.drawImage(video, 0, 0);
+                // "image/webp" works in Chrome.
+                // Other browsers will fall back to image/png.
+                document.querySelector('img').src = canvas.toDataURL('image/webp');
+            }
+        }
+        
+        video.addEventListener('click', snapshot, false);
+        
         navigator.getUserMedia  = navigator.getUserMedia ||
-                              navigator.webkitGetUserMedia ||
-                              navigator.mozGetUserMedia ||
-                              navigator.msGetUserMedia;
+                                  navigator.webkitGetUserMedia ||
+                                  navigator.mozGetUserMedia ||
+                                  navigator.msGetUserMedia;
                               
         var vgaConstraints = {
                   video: {
@@ -32,13 +69,14 @@
                       maxHeight: 360
                     }
                   },
-                  audio: true
+                  audio: false
                 };
                 
         var successfulCallback = function(localMediaStream) {
-                var video = document.querySelector('video');
+                
                 video.src = window.URL.createObjectURL(localMediaStream);
-
+                localMediaStream = stream;
+                
                 // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
                 // See crbug.com/110938.
                 video.onloadedmetadata = function(e) {
@@ -60,19 +98,5 @@
         );
         
     </script>
-    
-    <div>
-        <video autoplay></video>
-    </div>
-    
-    <p>
-	<footer role="contentinfo">
-
-		<div>Page footer content</div>
-
-		<small>Copyright &copy; <time datetime="2016">2016</time></small>
-		
-	</footer>
-    </p>
 </body>
 </html>
