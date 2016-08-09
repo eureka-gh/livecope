@@ -72,9 +72,9 @@
                   audio: false
                 };
                 
-        var successfulCallback = function(localMediaStream) {
+        var successfulCallback = function(stream) {
                 
-                video.src = window.URL.createObjectURL(localMediaStream);
+                video.src = window.URL.createObjectURL(stream);
                 localMediaStream = stream;
                 
                 // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
