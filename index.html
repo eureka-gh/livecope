@@ -40,8 +40,8 @@
       border: 1px solid #ccc;
     }
     img {
-        width: 320px;
-        height: 240px;
+        width: 640px;
+        height: 480px;
         background: #7F8C8D;
         border: 1px solid #ccc;
     }
@@ -66,9 +66,11 @@
         function snapshot() {
             if (localMediaStream) {
                 image = document.querySelector('img');
-                ctx.drawImage(video
+                ctx.drawImage(video, 0, 0);
+                /*
                              ,0, 0, vgaConstraints.video.mandatory.maxWidth, vgaConstraints.video.mandatory.maxHeight
                              ,0, 0,  vgaConstraints.video.mandatory.maxWidth, vgaConstraints.video.mandatory.maxHeight);
+                */
                 // "image/webp" works in Chrome.
                 // Other browsers will fall back to image/png.
                 image.src = canvas.toDataURL('image/webp');
