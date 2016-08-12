@@ -53,13 +53,22 @@
         var canvas = document.querySelector('canvas');
         var ctx = canvas.getContext('2d');
         var localMediaStream = null;
-        
+        var vgaConstraints = {
+                  video: {
+                    mandatory: {
+                      maxWidth: 640,
+                      maxHeight: 480
+                    }
+                  },
+                  audio: false
+                };
+                
         function snapshot() {
             if (localMediaStream) {
                 image = document.querySelector('img');
                 ctx.drawImage(video
-                             ,0, 0, 320, 240
-                             ,0, 0, image.width, image.height);
+                             ,0, 0, vgaConstraints.video.mandatory.max-width, vgaConstraints.video.mandatory.max-height
+                             ,0, 0,  vgaConstraints.video.mandatory.max-width, vgaConstraints.video.mandatory.max-height);
                 // "image/webp" works in Chrome.
                 // Other browsers will fall back to image/png.
                 image.src = canvas.toDataURL('image/webp');
@@ -72,16 +81,6 @@
                                   navigator.webkitGetUserMedia ||
                                   navigator.mozGetUserMedia ||
                                   navigator.msGetUserMedia;
-                              
-        var vgaConstraints = {
-                  video: {
-                    mandatory: {
-                      maxWidth: 640,
-                      maxHeight: 480
-                    }
-                  },
-                  audio: false
-                };
                 
         var successfulCallback = function(stream) {
                 
