@@ -67,8 +67,8 @@
             if (localMediaStream) {
                 image = document.querySelector('img');
                 ctx.drawImage(video
-                             ,0, 0, vgaConstraints.video.mandatory.max-width, vgaConstraints.video.mandatory.max-height
-                             ,0, 0,  vgaConstraints.video.mandatory.max-width, vgaConstraints.video.mandatory.max-height);
+                             ,0, 0, vgaConstraints.video.mandatory.maxWidth, vgaConstraints.video.mandatory.maxHeight
+                             ,0, 0,  vgaConstraints.video.mandatory.maxWidth, vgaConstraints.video.mandatory.maxHeight);
                 // "image/webp" works in Chrome.
                 // Other browsers will fall back to image/png.
                 image.src = canvas.toDataURL('image/webp');
