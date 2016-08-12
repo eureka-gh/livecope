@@ -20,10 +20,10 @@
 <body>
     <!-- MVC's View section -->
     <video autoplay></video>
+    <div>
     <img src="">
     <div>
     <canvas style="display:none;"></canvas>
-    </div>
     
     <p>
 	<footer role="contentinfo">
@@ -34,8 +34,8 @@
     
     <style>
     video {
-      width: 640px;
-      height: 480px;
+      width: 320px;
+      height: 240px;
       background: #7F8C8D;
       border: 1px solid #ccc;
     }
@@ -50,7 +50,7 @@
         
         function snapshot() {
             if (localMediaStream) {
-                ctx.drawImage(video, 0, 0);
+                ctx.drawImage(video, 0, 0, 320, 240);
                 // "image/webp" works in Chrome.
                 // Other browsers will fall back to image/png.
                 document.querySelector('img').src = canvas.toDataURL('image/webp');
