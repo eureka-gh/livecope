@@ -57,9 +57,9 @@
         function snapshot() {
             if (localMediaStream) {
                 image = document.querySelector('img');
-                ctx.drawImage(video, 
-                              0, 0, video.width, video.height
-                              0, 0, image.width, image.height);
+                ctx.drawImage(video
+                             ,0, 0, video.width, video.height
+                             ,0, 0, image.width, image.height);
                 // "image/webp" works in Chrome.
                 // Other browsers will fall back to image/png.
                 image.src = canvas.toDataURL('image/webp');
